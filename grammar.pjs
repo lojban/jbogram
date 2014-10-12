@@ -1,0 +1,108 @@
+start
+  = sentence
+
+sentence
+  = h:head s:mainselbri t:tail {return {type:'bridi',head:h,selbri:s,tail:t};}
+  / t:terms {return {type:'fragment',terms:t};}
+
+
+head = t:terms " " {return t;}
+     /
+
+tail = " " t:terms {return t;}
+     /
+
+mainselbri
+  = "cu " s:selbri {return s;}
+  / selbri
+
+
+c = [bcdfgjklmnprstvxz]
+v = [aeiouy]
+
+selbri
+  = tanrupivot
+  / b:brivla {return {type:'selbri',brivla:b};}
+
+tanrupivot
+  = t:tanru {
+function pivot(arg,i) {
+  var right={type:'selbri',brivla:arg[i]};
+  if(i===arg.length-1) return right;
+  return {type:'tanru',left:pivot(arg,i+1),right:right};
+}
+return pivot(t,0);}
+
+tanru
+  =b:brivla " " t:tanru {t.push(b);return t;}
+  /b:brivla {return [b];}
+
+brivla
+  = brivla:swapbrivla {
+    var se=brivla.SE;
+    for(var i=0;i<se.length/2;++i) {
+      var tmp=se[i];
+      se[i]=se[se.length-i-1];
+      se[se.length-i-1]=tmp;
+    }
+    return brivla;
+}
+swapbrivla
+ = s:SE " " b:swapbrivla {b.SE.push(s);return b;}
+ / b:brivla1 {return {type:b.t,name:b.n,SE:[]};}
+
+brivla1
+  = g:gismu {return {t:'gismu',n:g};}
+  / c:cmavoselbri {return {t:'cmavo',n:c};}
+
+gismu
+   = a:c e:c i:v o:c u:v {return a+e+i+o+u;}
+   / a:c e:v i:c o:c u:v {return a+e+i+o+u;}
+cmavoselbri
+  = "co'e"
+
+terms =
+  terms:swapterms {
+    for(var i=0;i<terms.length/2;++i) {
+      var tmp=terms[i];
+      terms[i]=terms[terms.length-i-1];
+      terms[terms.length-i-1]=tmp;
+    }
+    return terms;
+  }
+swapterms
+  = x:term " " xs:swapterms {xs.push(x);return xs;}
+  / t:term {return [t];}
+
+term
+  = t:tag " " s:sumti {return {type:'tag',name:t,sumti:s};}
+  / t:tag " " "ku" {return {type:'tag',name:t};}
+  / t:tag {return {type:'tag',name:t};}
+  / sumti
+  / f:FA {return {type:'FA', name:f};}
+
+
+FA
+  = a:"f" b:[aeiou] {return a+b;}
+
+SE
+  = a:[stvx] b:"e" {return a+b;}
+
+tag
+  = "pu"
+  / "ca"
+  / "bai"
+  / "ba"
+
+sumti
+  = "lo " s:selbri " ku" {return {type:'sumti',gadri:'lo',selbri:s};}
+  / "lo " s:selbri {return {type:'sumti',gadri:'lo',selbri:s};}
+  / c:cmavosumti {return {type:'sumti',cmavo:c};}
+
+cmavosumti =
+  "mi'o"
+  / "ko'a"
+  / "mi"
+  / "do"
+  / "ti"
+  / "ta"
