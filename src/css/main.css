@@ -22,7 +22,7 @@ body {
 }
 .main {
   min-height:100%;
-  max-width:8in;
+  max-width:9in;
   background-color:#f5f5f5;
   margin: 0 auto;
   padding:0 1cm;
@@ -131,4 +131,18 @@ table,tr,td {
 }
 .auto {
   overflow:auto;
+}
+.code {
+  font-family:monospace;
+  background-color:white;
+  border:0.03cm solid grey;
+  border-radius:0.1cm;
+  color:grey;
+  padding:0.05cm 0.1cm;
+}
+span.code {
+  white-space:nowrap;
+}
+.tab {
+  border:0.03cm solid red;
 }

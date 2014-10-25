@@ -4,12 +4,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: ['build'],
-    copy: {
+    sync: {
       main: {
         files: [
         // includes files within path
         {expand: true, flatten:true, src: ['src/js/*'], dest: 'build/js/', filter: 'isFile'},
-        {expand: true, flatten:true, src: ['src/css/*'], dest: 'build/css/', filter: 'isFile'}
+        {expand: true, flatten:true, src: ['src/css/*'], dest: 'build/css/', filter: 'isFile'},
+        {expand: true, cwd: 'src/js/MathJax/', src: ['**'], dest: 'build/js/MathJax/'},
         ]
       }
     },
@@ -39,11 +40,12 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-sync');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jade');
 
   grunt.registerTask('makejade', 'My "default" task description.', function() {
     grunt.log.writeln(JSON.stringify(arguments));
   });
-  grunt.registerTask('default', ['clean','copy','jade']);
+  grunt.registerTask('default', ['sync','jade']);
 };

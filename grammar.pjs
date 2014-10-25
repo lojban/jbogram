@@ -2,9 +2,11 @@ start
   = sentence
 
 sentence
-  = h:head s:mainselbri t:tail {return {type:'bridi',head:h,selbri:s,tail:t};}
+  = p:prenex h:head s:mainselbri t:tail {return {type:'bridi',prenex:p,head:h,selbri:s,tail:t};}
+  / h:head s:mainselbri t:tail {return {type:'bridi',head:h,selbri:s,tail:t};}
   / t:terms {return {type:'fragment',terms:t};}
 
+prenex = t:terms " zo'u " {return t;}
 
 head = t:terms " " {return t;}
      /
@@ -99,6 +101,13 @@ sumti
   / "lo " s:selbri {return {type:'sumti',gadri:'lo',selbri:s};}
   / c:cmavosumti {return {type:'sumti',cmavo:c};}
 
+number
+  = PA number
+  /
+
+PA
+  = "pa"/"re"/"ci"/"vo"/"mu"/"xa"/"ze"/"bi"/"so"
+
 cmavosumti =
   "mi'o"
   / "ko'a"
@@ -106,3 +115,6 @@ cmavosumti =
   / "do"
   / "ti"
   / "ta"
+  / "da"
+  / "de"
+  / "di"
