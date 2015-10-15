@@ -1,0 +1,148 @@
+body, html {
+  min-height:100%;
+  height:auto !important;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+body {
+  font-family:Georgia, serif;
+  font-size:1.2em;
+}
+.title {
+  font-family:sans-serif;
+  font-size:2em;
+  font-weight:100;
+  margin-top:1cm;
+}
+.panel {
+  min-height:100%;
+  margin:0;
+  padding:0;
+}
+.main {
+  min-height:100%;
+  max-width:9in;
+  background-color:#f5f5f5;
+  margin: 0 auto;
+  padding:0 1cm;
+  box-shadow:0 0 4cm -1cm black;
+}
+.main p {
+  font-size:0.9em;
+  line-height:1.75em;
+}
+aside {
+  padding:0.25cm;
+  font-family: sans-serif;
+  font-size:0.75em;
+  font-weight:normal;
+  line-height:1.6em;
+  color:rgb(106, 106, 106);;
+  /*text-shadow:0.06em 0.06em #f8f8ff;*/
+  background-color:rgb(232,232,232);
+  border:0.03cm solid rgb(182,182,182);
+  border-radius:0.15cm;
+}
+.quote {
+  padding:0.3cm 1.4cm;
+  padding-top:0.8cm;
+  color:#aaa;
+  font-style: italic;
+  font-size:1.2em;
+}
+.quote::before {
+  content:"“";
+}
+.quote::after {
+  content:"”";
+}
+.qauthor {
+  color:#aaa;
+  font-style:italic;
+  font-size:1.2em;
+  margin-left:18%;
+}
+.qauthor::before {
+  content: "–";
+}
+hr.grad {
+  border:0;
+  height:1px;
+  background: #777;
+}
+hr.space {
+  margin-bottom:1cm;
+}
+.i {
+  font-style:italic;
+}
+.l {
+  font-style:italic;
+}
+.l:before {
+  content:"{";
+}
+.l:after {
+  content:"}";
+}
+.b {
+  font-weight:bold;
+}
+br.space {
+  height:0.5cm;
+}
+a {
+  text-decoration:none;
+  color:#226ABD;
+}
+table,tr,td {
+  border-collapse:collapse;
+  font-family:sans-serif;
+  border:0.03cm solid #888;
+  color:#444;
+  background-color:rgb(232,232,232);
+  padding:0.06cm 0.12cm;
+
+}
+.thinlink, .dnav {
+  font-family:sans-serif;
+  font-weight:100;
+  font-size:0.9em;
+}
+.dnav {
+  padding:0.2cm 0;
+}
+.small {
+  font-size:0.8em;
+  /*width:4cm;*/
+}
+.fleft {
+  float:left;
+}
+.fright {
+  float:right;
+}
+.tright {
+  text-align:right;
+}
+.clear {
+  clear:both;
+}
+.auto {
+  overflow:auto;
+}
+.code {
+  font-family:monospace;
+  background-color:white;
+  border:0.03cm solid grey;
+  border-radius:0.1cm;
+  color:grey;
+  padding:0.05cm 0.1cm;
+}
+span.code {
+  white-space:nowrap;
+}
+.tab {
+  border:0.03cm solid red;
+}
